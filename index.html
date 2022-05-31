@@ -15,7 +15,6 @@
     <script>
       Kakao.Auth.authorize({redirectUri:'https://leejanghoon.github.io/Test', scope: 'talk_message'}); <!-- 로그인 -->
       
-      Kakao.Auth.setAccessToken(ACCESS_TOKEN);
       
       Kakao.API.request({
         url: '/v2/user/me',
