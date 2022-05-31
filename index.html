@@ -20,7 +20,7 @@
 <script type="text/javascript">
   function sendTo() {
     Kakao.Auth.login({
-      scope: 'PROFILE,TALK_MESSAGE',
+      scope: 'TALK_MESSAGE',
       success: function() {
         Kakao.API.request({
           url: '/v2/api/talk/memo/default/send',
