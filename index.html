@@ -8,43 +8,67 @@
       console.log(Kakao.isInitialized());
       
 
-Kakao.Link.createDefaultButton({
-      container: '#kakao-link-btn',  // 컨테이너는 아까 위에 버튼이 쓰여진 부분 id 
-      objectType: 'feed',
-      content: {  // 여기부터 실제 내용이 들어갑니다. 
-        title: '딸기 치즈 케익', // 본문 제목
-        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',  // 본문 바로 아래 들어가는 영역?
-        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png', // 이미지
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
-        }
+<a id="send-to-btn" href="#" onclick="sendTo();">
+  <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
+</a>
+<script type="text/javascript">
+  function sendTo() {
+    Kakao.Auth.login({
+      scope: 'PROFILE,TALK_MESSAGE',
+      success: function() {
+        Kakao.API.request({
+          url: '/v2/api/talk/memo/default/send',
+          data: {
+            template_object: {
+              object_type: 'feed',
+              content: {
+                title: '딸기 치즈 케익',
+                description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+                image_url:
+                  'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                link: {
+                  mobile_web_url: 'https://developers.kakao.com',
+                  web_url: 'https://developers.kakao.com',
+                },
+              },
+              social: {
+                like_count: 286,
+                comment_count: 45,
+                shared_count: 845,
+              },
+              buttons: [
+                {
+                  title: '웹으로 보기',
+                  link: {
+                    mobile_web_url: 'https://developers.kakao.com',
+                    web_url: 'https://developers.kakao.com',
+                  },
+                },
+                {
+                  title: '앱으로 보기',
+                  link: {
+                    mobile_web_url: 'https://developers.kakao.com',
+                    web_url: 'https://developers.kakao.com',
+                  },
+                },
+              ],
+            },
+          },
+          success: function(res) {
+            alert('success: ' + JSON.stringify(res))
+          },
+          fail: function(err) {
+            alert('error: ' + JSON.stringify(err))
+          },
+        })
       },
-      social: {  /* 공유하면 소셜 정보도 같이 줄 수 있는데, 이 부분은 기반 서비스마다 적용이 쉬울수도 어려울 수도 있을듯 합니다. 전 연구해보고 안되면 제거할 예정 (망할 google  blogger...) */
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
+      fail: function(err) {
+        alert('failed to login: ' + JSON.stringify(err))
       },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        },
-        {
-          title: '앱으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        }
-      ]
-    });
-  //]]>
-</script> 
-    
+    })
+  }
+</script>
+
     
     
     
