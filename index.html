@@ -13,19 +13,10 @@
  
       
     <script>
-      Kakao.Auth.login(scope: 'talk_message'); <!-- 로그인 -->
+      Kakao.Auth.login(scope: 'talk_message'); <!-- 로그인 창 호출 (앱을 통해)-->
       
       
-      Kakao.API.request({
-        url: '/v2/user/me',
-       success: function(response) {
-        console.log(response);
-         },
-    fail: function(error) {
-        console.log(error);
-    }
-    });
-      
+    
       
       
     
