@@ -12,108 +12,69 @@
     </script>
  
     
-    <!-- 링크 버튼 -->
+    
+    
     <a id="send-to-btn" href="#" onclick="sendTo();">
-      <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
-    </a>
-    
-    
-    
-    <!-- 로그인 창 호출 (앱을 통해)-->
-    <script>
-                                  
-     Kakao.Auth.login({
-      scope: 'talk_message',
-      success: function() {},
-       
-       
+  <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
+</a>
+<script type="text/javascript">
+  function sendTo() {
+    Kakao.Auth.login({
+      scope: 'PROFILE,TALK_MESSAGE',
+      success: function() {
+        Kakao.API.request({
+          url: '/v2/api/talk/memo/default/send',
+          data: {
+            template_object: {
+              object_type: 'feed',
+              content: {
+                title: '딸기 치즈 케익',
+                description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+                image_url:
+                  'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                link: {
+                  mobile_web_url: 'https://developers.kakao.com',
+                  web_url: 'https://developers.kakao.com',
+                },
+              },
+              social: {
+                like_count: 286,
+                comment_count: 45,
+                shared_count: 845,
+              },
+              buttons: [
+                {
+                  title: '웹으로 보기',
+                  link: {
+                    mobile_web_url: 'https://developers.kakao.com',
+                    web_url: 'https://developers.kakao.com',
+                  },
+                },
+                {
+                  title: '앱으로 보기',
+                  link: {
+                    mobile_web_url: 'https://developers.kakao.com',
+                    web_url: 'https://developers.kakao.com',
+                  },
+                },
+              ],
+            },
+          },
+          success: function(res) {
+            alert('success: ' + JSON.stringify(res))
+          },
+          fail: function(err) {
+            alert('error: ' + JSON.stringify(err))
+          },
+        })
+      },
       fail: function(err) {
         alert('failed to login: ' + JSON.stringify(err))
-      }
-    });
+      },
+    })
+  }
+</script>
 
-    
-      
-      
-    /*
-      Kakao.API.request({
-  url: '/v2/api/talk/memo/default/send',
-  data: {
-    template_object: {
-      object_type: 'feed',
-      content: {
-        title: '카카오톡 링크 4.0',
-        description: '디폴트 템플릿 FEED',
-        image_url:
-          'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        link: {
-          web_url: 'https://developers.kakao.com',
-          mobile_web_url: 'https://developers.kakao.com',
-        },
-      },
-      item_content: {
-        profile_text: 'Kakao',
-        profile_image_url: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        title_image_url: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        title_image_text: 'Cheese cake',
-        title_image_category: 'Cake',
-        items: [
-          {
-            item: 'Cake1',
-            item_op: '1000원',
-          },
-          {
-            item: 'Cake2',
-            item_op: '2000원',
-          },
-          {
-            item: 'Cake3',
-            item_op: '3000원',
-          },
-          {
-            item: 'Cake4',
-            item_op: '4000원',
-          },
-          {
-            item: 'Cake5',
-            item_op: '5000원',
-          },
-        ],
-        sum: 'Total',
-        sum_op: '15000원',
-      },
-      social: {
-        like_count: 100,
-        comment_count: 200,
-      },
-      button_title: '바로 확인',
-    },
-  },
-  success: function(response) {
-    console.log(response);
-  },
-  fail: function(error) {
-    console.log(error);
-  },
-});
-      
-      */
-      
-      
-    </script>
-    
-    
-      
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
     
                     
                     
