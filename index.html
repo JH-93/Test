@@ -7,7 +7,7 @@
 
     <!-- 카카오 SDK 초기화 -->
     <script type="text/javascript">
-      Kakao.init("aa104880175d2e18ec4b3bcb37589dd2");
+      Kakao.init("aa104880175d2e18ec4b3bcb37589dd2");   /* !!카카오톡 자바스크립트 인증키!! */
       console.log(Kakao.isInitialized());
     </script>
 
@@ -20,13 +20,13 @@
     
     <script type="text/javascript">
       function sendTo() {
-        Kakao.Auth.login({         <!-- 로그인 -->
-          scope: 'TALK_MESSAGE',   <!-- 사용자 권한 -->
+        Kakao.Auth.login({         /* 로그인 */
+          scope: 'TALK_MESSAGE',   /* 사용자 권한 */
           success: function() {
             Kakao.API.request({
               url: '/v2/api/talk/memo/send',
               data: {
-                template_id: 77584  <!-- 카카오톡 디벨로퍼 템플릿 ID -->
+                template_id: 77584  /* !!카카오톡 디벨로퍼 템플릿 ID!! */
               },
             },
                    
@@ -37,11 +37,11 @@
             alert('error: ' + JSON.stringify(err))
           },
         })
-       },         <!-- success: function()의 끝 -->              
+       },         /* success: function()의 끝 */
       fail: function(err) {
         alert('failed to login: ' + JSON.stringify(err))
       },
-    })            <!-- Kakao.Auth.login()의 끝 -->   
+    })            /* Kakao.Auth.login()의 끝 */
    }
 </script>
            
