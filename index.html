@@ -23,16 +23,10 @@
     <script>
                                   
      Kakao.Auth.login({
-      scope: 'TALK_MESSAGE',
-      success: function() {
-        Kakao.API.request({
-          url: '/v2/api/talk/memo/default/send',
-          success: function(res) {
-            alert('success: ' + JSON.stringify(res))},
-          fail: function(err) {
-            alert('error: ' + JSON.stringify(err))},
-        })
-      },
+      scope: 'talk_message',
+      success: function() {},
+       
+       
       fail: function(err) {
         alert('failed to login: ' + JSON.stringify(err))
       }
