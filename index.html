@@ -11,11 +11,40 @@
       console.log(Kakao.isInitialized());
     </script>
  
-      
+    
+    <!-- 링크 버튼 -->
+    <a id="send-to-btn" href="#" onclick="sendTo();">
+      <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
+    </a>
+    
+    
+    
+    <!-- 로그인 창 호출 (앱을 통해)-->
     <script>
-      Kakao.Auth.login(scope: 'TALK_MESSAGE'); <!-- 로그인 창 호출 (앱을 통해)-->
-      
-      
+      Kakao.Auth.login({
+        scope: 'talk_message',
+        success: function() {
+          Kakao.API.request({
+            url: 'v2/api/talk/memo/default/send',
+    
+                                            
+                                            
+     Kakao.Auth.login({
+      scope: 'PROFILE,TALK_MESSAGE',
+      success: function() {
+        Kakao.API.request({
+          url: '/v2/api/talk/memo/default/send',
+          success: function(res) {
+            alert('success: ' + JSON.stringify(res))},
+          fail: function(err) {
+            alert('error: ' + JSON.stringify(err))},
+        })
+      },
+      fail: function(err) {
+        alert('failed to login: ' + JSON.stringify(err))
+      }
+    });
+
     
       
       
@@ -93,9 +122,6 @@
     
     
     
-<a id="send-to-btn" href="#" onclick="sendTo();">
-  <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
-</a>
 
     
     
