@@ -10,29 +10,26 @@
       Kakao.init("aa104880175d2e18ec4b3bcb37589dd2");
       console.log(Kakao.isInitialized());
     </script>
- 
+
+    
+    <!-- 카카오톡 버튼 (링크) -->
+    <a id="send-to-btn" href="#" onclick="sendTo();">
+      <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
+    </a>
     
     
-    
-  <a id="send-to-btn" href="#" onclick="sendTo();">
-    <img src="//k.kakaocdn.net/14/dn/btqc6xrxbuT/7VJk7YSWITkz9K9pbXEffk/o.jpg" alt="나에게 보내기 버튼" />
-  </a>
-    
-<script type="text/javascript">
-  function sendTo() {
-    Kakao.Auth.login({
-      scope: 'TALK_MESSAGE',
-      success: function() {
-        Kakao.API.request({
-          url: '/v2/api/talk/memo/send',
-          data: {
-            template_id: 77584,
-            template_args: {
-              title: " 제목제목제목 ",
-              description: " "
-          },
-         },
-          
+    <script type="text/javascript">
+      function sendTo() {
+        Kakao.Auth.login({         <!-- 로그인 -->
+          scope: 'TALK_MESSAGE',   <!-- 사용자 권한 -->
+          success: function() {
+            Kakao.API.request({
+              url: '/v2/api/talk/memo/send',
+              data: {
+                template_id: 77584  <!-- 카카오톡 디벨로퍼 템플릿 ID -->
+              },
+            },
+                   
           success: function(res) {
             alert('success: ' + JSON.stringify(res))
           },
@@ -40,16 +37,13 @@
             alert('error: ' + JSON.stringify(err))
           },
         })
-      },
+       },         <!-- success: function()의 끝 -->              
       fail: function(err) {
         alert('failed to login: ' + JSON.stringify(err))
       },
-    })
-  }
+    })            <!-- Kakao.Auth.login()의 끝 -->   
+   }
 </script>
-
-    
-                    
-                    
+           
   </body>
 </html>
