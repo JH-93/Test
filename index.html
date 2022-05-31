@@ -10,10 +10,22 @@
       Kakao.init("be35834f6f24e05d56408530a9dbb101");
       console.log(Kakao.isInitialized());
     </script>
-    <!-- 카카오 SDK 초기화 끝-->
+ 
       
     <script>
-      Kakao.Auth.authorize({redirectUri:'https://leejanghoon.github.io/Test'});
+      Kakao.Auth.authorize({redirectUri:'https://leejanghoon.github.io/Test'}); <!-- 로그인 -->
+      
+      Kakao.Auth.setAccessToken(ACCESS_TOKEN);
+      
+      Kakao.API.request({
+        url: '/v2/user/me',
+       success: function(response) {
+        console.log(response);
+         },
+    fail: function(error) {
+        console.log(error);
+    }
+});
       
     
     
