@@ -27,9 +27,12 @@
               url: '/v2/api/talk/memo/send',
               data: {
                 template_id: 77584  /* !!카카오톡 디벨로퍼 템플릿 ID!! */
+                template_args: {
+                  title: "",
+                  description: ""
+                },
               },
-            },
-                   
+    
           success: function(res) {
             alert('success: ' + JSON.stringify(res))
           },
